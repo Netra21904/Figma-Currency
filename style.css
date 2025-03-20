@@ -38,9 +38,8 @@
     font-size: 12px;
 }
 
-.data {
-    display: flex;
+.cryptoTable {
     align-items: center;
     justify-content: center;
-    background: red;
+    color: white;
 }

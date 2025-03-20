@@ -1,32 +1,31 @@
-import YOUR_API_KEY from "./API_CONSTANTS.js";
+let cryptoData = [];
 
-const tableBody = document.querySelector("crypto-table");
-const generateQueryParam = new URLSearchParams({
-    key: YOUR_API_KEY,
-});
+function fetchData() {
+  fetch(
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      cryptoData = data;
+      dataRender(data);
+    })
+    .catch((err) => console.erorr("Error fetching data", err));
+}
 
-console.log(generateQueryParam);
+function dataRender(data) {
+  const tbody = document.querySelector(".cryptoTable tbody");
+  tbody.innerHML = "";
+  data.forEach((coin) => {
+    const row = `<tr>
+    <td><img src="${coin.image}" alt="${coin.name}" width="25"</td>
+    <td>${coin.name}<td>
+    <td>${coin.symbol.toUpperCase()}</td>
+    <td>${coin.current_price}<td>
+    <td>${coin.total_volume}<td>
+    <td>${coin.price_change_percentage_24h}<td>
+    </tr>`;
+    tbody.innerHTML += row;
+  });
+}
 
-fetch(generateQueryParam)
-    .then((res) => res.json)
-    .then((coin) => {
-        console.log(coin)
-        coin.items.forEach(element => {
-            
-        });
-        innerHTML.row = `
-            <tr>
-                    <td><img src="${coin.image}" width="30"></td>
-                    <td>"${coin.id}"</td>
-                    <td>"${coin.symbol}"</td>
-                    <td>"${coin.current_price}"</td>
-                    <td>"${coin.market_cap_change_24h}"</td>
-                    <td>"${coin.price_change_percentage_24h}"</td>
-                    <td>"${coin.market_cap}"</td>
-                </tr>
-            `;
-            tableBody.innerHTML += row;
-        });
-    }
-
-fetchCryptoData();
+fetchData();
