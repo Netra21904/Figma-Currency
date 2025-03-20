@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+.main-container {
+    background: #1a1a1c;
+    width: 100vw;
+    height: 100vh;
+}
+  
+.head-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 3rem;
+}
+  
+.search-input {
+    width: 20rem;
+    background: #1a1a1c;
+    color: white;
+    border: none;
+    border: 1px solid white;
+    padding: 0.7rem;
+}
+  
+.sort-mkt,
+.sort-per {
+    width: 8rem;
+    background: #1a1a1c;
+    color: white;
+    border: none;
+    border: 1px solid white;
+    padding: 0.7rem;
+    font-size: 12px;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
+}
